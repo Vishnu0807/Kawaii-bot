@@ -76,4 +76,4 @@ async def info(ctx, *, member: discord.Member):
 
 
 
-client.run('NjQ0NTkwOTQzODUyNDI5MzIz.XqRl8g.DoMLzYg1OewB8I_JuJHjk9noC80')
+client.run('NjQ0NTkwOTQzODUyNDI5MzIz.XruJEw.OFb8UsHHJcGhuOfnk5ktnXJUfBI')
