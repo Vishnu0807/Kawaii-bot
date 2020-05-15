@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix='!')
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name='new commands.'))
+    await client.change_presence(activity=discord.Game(name='!help'))
     print('This Bot is Ready!')
 
 
