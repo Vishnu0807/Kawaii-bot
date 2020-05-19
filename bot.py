@@ -17,7 +17,7 @@ async def on_ready():
 async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "welcome":
-            await channel.send(f"""Welcome to the server {member.mention},,you are the {server(members)} member""")
+            await channel.send(f"""Welcome to the server {member.mention}""")
 
 @client.event
 async def on_member_leave(member):
