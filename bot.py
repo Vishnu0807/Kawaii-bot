@@ -14,8 +14,7 @@ async def on_ready():
 
 @client.command()
 async def connected_accounts(ctx , *, member):
-    fmt = '{connected_accounts}'
-    await ctx.send(fmt)
+      await ctx.send('{connected_accounts}')
 
 @client.event
 async def on_member_join(member):
