@@ -17,9 +17,13 @@ async def on_ready():
 async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "welcome":
-            await channel.send(f"""Welcome to the server {member.mention}""")
+            await channel.send(f"""Welcome to the server {member.mention},,you are the {server(members)} member""")
 
-
+@client.event
+async def on_member_leave(member):
+    for channel in member.guild.channels:
+        if str(channel) == "welcome":
+            await channel.send(f"""Bad to see you go {member.mention}""")
 
 @client.command()
 async def ping(ctx):
