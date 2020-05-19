@@ -13,7 +13,7 @@ async def on_ready():
     print('This Bot is Ready!')
 
 @client.command()
-async def connected_accounts(ctx , *, member):
+async def connected_accounts(ctx , *, member: discord.Member):
       await ctx.send({connected_accounts})
 
 @client.event
