@@ -12,18 +12,16 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name='!help'))
     print('This Bot is Ready!')
 
+@client.command()
+async def connected_accounts(ctx , *, member):
+    fmt = '{connected_accounts}'
+    await ctx.send(fmt)
 
 @client.event
 async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "welcome":
             await channel.send(f"""Welcome to the server {member.mention}""")
-
-@client.event
-async def on_member_leave(member):
-    for channel in member.guild.channels:
-        if str(channel) == "welcome":
-            await channel.send(f"""Bad to see you go {member.mention}""")
 
 @client.command()
 async def ping(ctx):
