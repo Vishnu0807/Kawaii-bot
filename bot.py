@@ -9,9 +9,9 @@ client = commands.Bot(command_prefix='!')
 @client.command()
 async def hypesquad(ctx , * ,member:discord.member):
     if hypesquad== True:
-        await "This member is in Discord hypesquad"
+        await ctx.send("This member is in Discord hypesquad")
     else:
-        await "This member is not in Discord hypesquad"
+        await ctx.send("This member is not in Discord hypesquad")
 
 @client.event
 async def on_ready():
