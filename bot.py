@@ -4,7 +4,7 @@ import random
 import os
 import asyncio
 
-client = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='-')
 
 @client.command()
 async def hypesquad(ctx , * ,member:discord.member):
@@ -15,7 +15,7 @@ async def hypesquad(ctx , * ,member:discord.member):
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name='!help'))
+    await client.change_presence(activity=discord.Game(name='-help'))
     print('This Bot is Ready!')
 
 @client.command()
