@@ -26,7 +26,7 @@ async def connected_accounts(ctx , *, member: discord.Member):
 async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "welcome":
-            await channel.send(f"""Welcome to the server {member.mention}""")
+            await channel.send(f"""hihi {member.mention},hope you enjoy in this server to fullest""")
 
 @client.command()
 async def ping(ctx):
