@@ -41,9 +41,10 @@ async def ping(ctx):
 @client.command(aliases = ['test' , '8ball'])
 async def _8ball(ctx,*,question):
     responses = ["It is certainly yes",
-                 "It is decided so",
+                 "Yes yes yes:,
                  "No no no",
                  "No",
+                 "yes certainly",
                  "Definetly No!!"
     ]
     await ctx.send(f'Questions:  {question}\nAnswer: {random.choice(responses)}')
