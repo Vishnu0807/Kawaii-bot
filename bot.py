@@ -28,9 +28,9 @@ async def on_member_join(member):
         if str(channel) == "welcome":
             await channel.send(f"""hihi {member.mention},hope you enjoy in this server to fullest""")
 @client.command()
-async def say(ctx, arg,arg2,arg3,arg4,arg5,arg6):
+async def say(ctx,*, arg ):
     await ctx.channel.purge(limit=1)
-    await ctx.send(arg,arg2,arg3,arg4,arg5,arg6)
+    await ctx.send(arg)
     
     
 @client.command()
