@@ -27,7 +27,12 @@ async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "welcome":
             await channel.send(f"""hihi {member.mention},hope you enjoy in this server to fullest""")
-
+@client.command()
+async def say(ctx, arg,arg2,arg3,arg4,arg5,arg6):
+    await ctx.channel.purge(limit=1)
+    await ctx.send(arg,arg2,arg3,arg4,arg5,arg6)
+    
+    
 @client.command()
 async def ping(ctx):
     await ctx.send(f'pong! {round(client.latency*1000)}ms')
