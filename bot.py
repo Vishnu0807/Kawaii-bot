@@ -33,13 +33,24 @@ async def say(ctx,*, arg ):
     await ctx.send(arg)
 
 @client.command()
+async def hug(ctx, members: commands.Greedy[discord.Member]):
+    hugged = ", ".join(x.name for x in members)
+    ranimg=('https://media.discordapp.net/attachments/629202117093228549/717999255054450688/2Q.png',
+            'https://media.discordapp.net/attachments/629202117093228549/717999428287332372/9k.png',
+            'https://media.discordapp.net/attachments/629202117093228549/717999855988899870/images.png',
+            'https://media.discordapp.net/attachments/629202117093228549/718000025740902470/images.png')
+    embde=discord.Embed(title='{} just got hugged'.format(hugged),description='Awwww!',color=0xEE8700)
+    embde.set_image(url=random.choice(ranimg))
+    await ctx.send(embed=embde)    
+    
+@client.command()
 async def punch(ctx, members: commands.Greedy[discord.Member], *, reasoon='no reason'):
     punched = ", ".join(x.name for x in members)
     raimg=('https://cdn.discordapp.com/attachments/549629874189369344/717991100517711882/2Q.png',
            'https://media.discordapp.net/attachments/549629874189369344/717996658465570816/Z.png',
            'https://media.discordapp.net/attachments/549629874189369344/717997018395443200/images.png',
            'https://media.discordapp.net/attachments/629202117093228549/717997548509593672/images.png')
-    emb=discord.Embed(title='{} just got slapped'.format(punched),description='for {}'.format(reasoon),color=0xEE8700,img_src='https://cdn.discordapp.com/attachments/549629874189369344/717991100517711882/2Q.png')
+    emb=discord.Embed(title='{} just got slapped'.format(punched),description='for {}'.format(reasoon),color=0xEE8700)
     emb.set_image(url=random.choice(raimg))
     await ctx.send(embed=emb)
     
