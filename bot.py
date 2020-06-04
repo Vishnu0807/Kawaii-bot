@@ -31,7 +31,12 @@ async def on_member_join(member):
 async def say(ctx,*, arg ):
     await ctx.channel.purge(limit=1)
     await ctx.send(arg)
-    
+@client.command()
+async def punch(ctx, members: commands.Greedy[discord.Member], *, reasoon='no reason'):
+    punched = ", ".join(x.name for x in members)
+    emb=discord.Embed(title='{} just got slapped'.format(punched),description='for {}'.format(reasoon),color=0xEE8700,img_src='https://cdn.discordapp.com/attachments/549629874189369344/717991100517711882/2Q.png')
+    emb.set_image(url='https://cdn.discordapp.com/attachments/549629874189369344/717991100517711882/2Q.png')
+    await ctx.send(embed=emb)    
     
 @client.command()
 async def ping(ctx):
