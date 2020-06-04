@@ -22,6 +22,18 @@ async def on_ready():
 async def connected_accounts(ctx , *, member: discord.Member):
       await ctx.send({connected_accounts})
 
+@client.command()
+async def slap(ctx, members: commands.Greedy[discord.Member], *, reasoon='no reason'):
+    slapped = ", ".join(x.name for x in members)
+    rasimg=('https://media.discordapp.net/attachments/549629874189369344/718006206983307286/9k.png',
+            'https://media.discordapp.net/attachments/549629874189369344/718006206983307286/9k.png',
+            'https://media.discordapp.net/attachments/549629874189369344/718006466581233714/Z.png',
+            'https://cdn.discordapp.com/attachments/549629874189369344/718006958074101860/2Q.png')
+    embdee=discord.Embed(title='{} just got slapped'.format(slapped),description='for {}'.format(reasoon),color=0xEE8700)
+    embdee.set_image(url=random.choice(rasimg))
+    await ctx.send(embed=embdee)        
+        
+        
 @client.event
 async def on_member_join(member):
     for channel in member.guild.channels:
