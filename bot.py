@@ -5,6 +5,7 @@ import os
 import asyncio
 
 client = commands.Bot(command_prefix='-')
+client.remove_command('help')
 
 @client.command()
 async def hypesquad(ctx , * ,member:discord.member):
@@ -44,6 +45,34 @@ async def say(ctx,*, arg ):
     await ctx.channel.purge(limit=1)
     await ctx.send(arg)
 
+@client.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+    hembed=discord.Embed(colour=discord.Colour.orange(),description='More commands will be added soon until then enjoy with the existing commands we have')
+
+    hembed.set_author(name='help')
+    hembed.add_field(name='funhelp',value='Returns a list of Fun commands',inline=False)
+    hembed.add_field(name='modhelp', value='Returns a list of Moderation commands', inline=False)
+    hembed.add_field(name='utihelp', value='Returns a list of Utility commands', inline=False)
+    await ctx.send(author,embed=hembed)
+    
+    
+    
+    @client.command(pass_context=True)
+async def funhelp(ctx):
+    author=ctx.message.author
+    fembed=discord.Embed(colour=discord.Colour.red(),description='We currently have only a few commands but more commands will be added soon')
+
+    fembed.add_field(name='punch {mention} reason',value='Command to punch a person which is displayed in an Embed',inline=False)
+    fembed.add_field(name='hug {mention}',value='Command to hug a person which is displayed in an Embed',inline=False)
+    fembed.add_field(name='slap {mention} reason',value='Command to slap a person which is displayed in an Embed',inline=False)
+    fembed.add_field(name='say arg',value='Command which repeats what you put in the arg and also deletes your command',inline=False)
+    fembed.add_field(name='8ball question',value='Command which generates a random answers to your questions',inline=False)
+    fembed.add_field(name='kill {mention}',value='Command to kill a person which is displayed in an Embed',inline=False)
+    fembed.add_field(name='bully {mention}',value='Command to bully a person which is displayed in an Embed',inline=False)
+    fembed.add_field(name='kiss {mention}',value='Command to kiss a person which is displayed in an Embed')
+    await ctx.send(author,embed=fembed)
+    
 @client.command()
 async def hug(ctx, members: commands.Greedy[discord.Member]):
     hugged = ", ".join(x.name for x in members)
