@@ -59,7 +59,7 @@ async def help(ctx):
     
     
     @client.command(pass_context=True)
-async def funhelp(ctx):
+    async def funhelp(ctx):
     author=ctx.message.author
     fembed=discord.Embed(colour=discord.Colour.red(),description='We currently have only a few commands but more commands will be added soon')
 
