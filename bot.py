@@ -71,6 +71,27 @@ async def funhelp(ctx):
     fembed.add_field(name='kiss {mention}',value='Command to kiss a person which is displayed in an Embed')
     await ctx.send(author,embed=fembed)
     
+    
+@client.command(pass_context=True)
+async def modhelp(ctx):
+    author=ctx.message.author
+    membed=discord.Embed(colour=discord.Colour.dark_blue(),description='We currently have only a few commands and we are working on it,new commands will be added soon until then you can use these...')
+    membed.add_field(name='kick {mention} reason',value='Command used to kick someone')
+    membed.add_field(name='ban {mention} reason',value='Command to ban someone')
+    membed.add_field(name='unban {mention}',value='Command to unban someone')
+
+    await ctx.send(author,embed=membed)
+
+@client.command(pass_context=True)
+async def utihelp(ctx):
+    author=ctx.message.author
+    umbed=discord.Embed(colour=discord.Colour.dark_grey(),description='We are currently working on new commands and they will be added soon until then you can use these...')
+    umbed.add_field(name='clear {amt}',value='This command clears the mentioned amount of messages')
+    umbed.add_field(name='info {mention}',value='This command shows the info about a user')
+
+    await ctx.send(author,embed=umbed)
+    
+    
 @client.command()
 async def hug(ctx, members: commands.Greedy[discord.Member]):
     hugged = ", ".join(x.name for x in members)
