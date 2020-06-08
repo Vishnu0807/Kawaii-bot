@@ -4,26 +4,17 @@ import random
 import os
 import asyncio
 
-client = commands.Bot(command_prefix='-')
-client.remove_command('help')
+bot = commands.Bot(command_prefix='-')
+bot.remove_command('help')
 
-@client.command()
-async def hypesquad(ctx , * ,member:discord.member):
-    if hypesquad== True:
-        await ctx.send("This member is in Discord hypesquad")
-    else:
-        await ctx.send("This member is not in Discord hypesquad")
 
-@client.event
+@bot.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name='-help'))
+    await bot.change_presence(activity=discord.Game(name='-help'))
     print('This Bot is Ready!')
 
-@client.command()
-async def connected_accounts(ctx , *, member: discord.Member):
-      await ctx.send({connected_accounts})
 
-@client.command()
+@bot.command()
 async def slap(ctx, members: commands.Greedy[discord.Member], *, reasoon='no reason'):
     slapped = ", ".join(x.name for x in members)
     rasimg=('https://media.discordapp.net/attachments/549629874189369344/718006206983307286/9k.png',
@@ -35,17 +26,17 @@ async def slap(ctx, members: commands.Greedy[discord.Member], *, reasoon='no rea
     await ctx.send(embed=embdee)        
         
         
-@client.event
+@bot.event
 async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "welcome":
             await channel.send(f"""hihi {member.mention},hope you enjoy in this server to fullest""")
-@client.command()
+@bot.command()
 async def say(ctx,*, arg ):
     await ctx.channel.purge(limit=1)
     await ctx.send(arg)
 
-@client.command(pass_context=True)
+@bot.command(pass_context=True)
 async def help(ctx):
     author = ctx.message.author
     hembed=discord.Embed(colour=discord.Colour.orange(),description='More commands will be added soon until then enjoy with the existing commands we have')
@@ -56,7 +47,7 @@ async def help(ctx):
     hembed.add_field(name='utihelp', value='Returns a list of Utility commands', inline=False)
     await ctx.send(author,embed=hembed)
     
-@client.command(pass_context=True)
+@bot.command(pass_context=True)
 async def funhelp(ctx):
     author=ctx.message.author
     fembed=discord.Embed(colour=discord.Colour.red(),description='We currently have only a few commands but more commands will be added soon')
@@ -72,7 +63,7 @@ async def funhelp(ctx):
     await ctx.send(author,embed=fembed)
     
     
-@client.command(pass_context=True)
+@bot.command(pass_context=True)
 async def modhelp(ctx):
     author=ctx.message.author
     membed=discord.Embed(colour=discord.Colour.dark_blue(),description='We currently have only a few commands and we are working on it,new commands will be added soon until then you can use these...')
@@ -82,7 +73,7 @@ async def modhelp(ctx):
 
     await ctx.send(author,embed=membed)
 
-@client.command(pass_context=True)
+@bot.command(pass_context=True)
 async def utihelp(ctx):
     author=ctx.message.author
     umbed=discord.Embed(colour=discord.Colour.dark_grey(),description='We are currently working on new commands and they will be added soon until then you can use these...')
@@ -92,7 +83,7 @@ async def utihelp(ctx):
     await ctx.send(author,embed=umbed)
     
     
-@client.command()
+@bot.command()
 async def hug(ctx, members: commands.Greedy[discord.Member]):
     hugged = ", ".join(x.name for x in members)
     ranimg=('https://media.discordapp.net/attachments/629202117093228549/717999255054450688/2Q.png',
@@ -103,7 +94,7 @@ async def hug(ctx, members: commands.Greedy[discord.Member]):
     embde.set_image(url=random.choice(ranimg))
     await ctx.send(embed=embde)    
     
-@client.command()
+@bot.command()
 async def punch(ctx, members: commands.Greedy[discord.Member], *, reasoon='no reason'):
     punched = ", ".join(x.name for x in members)
     raimg=('https://cdn.discordapp.com/attachments/549629874189369344/717991100517711882/2Q.png',
@@ -114,12 +105,12 @@ async def punch(ctx, members: commands.Greedy[discord.Member], *, reasoon='no re
     emb.set_image(url=random.choice(raimg))
     await ctx.send(embed=emb)
     
-@client.command()
+@bot.command()
 async def ping(ctx):
     await ctx.send(f'pong! {round(client.latency*1000)}ms')
 
 
-@client.command(aliases = ['test' , '8ball'])
+@bot.command(aliases = ['test' , '8ball'])
 async def _8ball(ctx,*,question):
     responses = ["It is certainly yes",
                  "Yes yes yes",
@@ -131,20 +122,20 @@ async def _8ball(ctx,*,question):
     await ctx.send(f'Questions:  {question}\nAnswer: {random.choice(responses)}')
 
 
-@client.command()
+@bot.command()
 async def clear(ctx , amount=3):
     await ctx.channel.purge(limit=amount)
 
-@client.command()
+@bot.command()
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason = reason)
 
-@client.command()
+@bot.command()
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
 
 
-@client.command()
+@bot.command()
 async def unban(ctx , * , member):
     banned_users = await ctx.guild.bans()
     member_name,member_discriminator = member.split('#')
@@ -160,7 +151,7 @@ async def unban(ctx , * , member):
 
 
 
-@client.command()
+@bot.command()
 async def info(ctx, *, member: discord.Member):
     """Tells you some info about the member."""
     fmt = '{0} joined Discord at {0.created_at} and has {1} roles and joined this server on {0.joined_at}'
@@ -168,10 +159,28 @@ async def info(ctx, *, member: discord.Member):
 
 
 
+@bot.command()
+async def info(ctx, *, member: discord.Member):
+    """Tells you some info about the member."""
+    fmend = discord.Embed(colour=discord.Colour.dark_magenta(),description='Info about {0}'.format(member))
+    fmend.add_field(name='joined this Server on:',value='{0.joined_at}'.format(member))
+    fmend.add_field(name='Joined Discord on:',value='{0.created_at}'.format(member))
+    fmend.add_field(name='Avatar url:',value='{0.avatar_url}'.format(member))
+    await ctx.send(ctx.author,embed = fmend)
+
+@info.error
+async def info_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        await ctx.send('I could not find that member...')
+
+@bot.command()
+async def spam(ctx,amt,*,argg):
+    await ctx.channel.purge(limit=1)
+    for amt in range(0,int(amt)):
+        await ctx.send(str(argg))
 
 
 
 
 
-
-client.run('NjQ0NTkwOTQzODUyNDI5MzIz.XruJEw.OFb8UsHHJcGhuOfnk5ktnXJUfBI')
+bot.run('NjQ0NTkwOTQzODUyNDI5MzIz.XruJEw.OFb8UsHHJcGhuOfnk5ktnXJUfBI')
