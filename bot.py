@@ -3,11 +3,8 @@ from discord.ext import commands
 import random
 import os
 import asyncio
-import json
 import sys, traceback
-import youtube_dl
 from discord.utils import get
-from discord import FFmpegPCMAudio
 from os import system
 
 print(discord.__version__)
