@@ -21,7 +21,6 @@ async def on_member_join(member):
         if str(channel) == "👑-welcome-👑":
             await channel.send(f"""hihi {member.mention},hope you enjoy in this server to fullest""")
 
-
 @bot.command(pass_context=True)
 async def help(ctx):
     author = ctx.message.author
