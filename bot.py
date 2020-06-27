@@ -2,9 +2,6 @@ import random
 import time
 import discord
 from discord.ext import commands
-import aiohttp
-
-
 
 bot = commands.Bot(command_prefix='-')
 bot.remove_command('help')
