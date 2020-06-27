@@ -3,11 +3,10 @@ import time
 import discord
 from discord.ext import commands
 import aiohttp
-print(discord.__version__)
+
 
 
 bot = commands.Bot(command_prefix='-')
-#id = 636540086351298580
 bot.remove_command('help')
 players = {}
 
