@@ -1,12 +1,8 @@
+import random
+import time
 import discord
 from discord.ext import commands
-import random
-import os
-import asyncio
-import sys, traceback
-from discord.utils import get
-from os import system
-
+import aiohttp
 print(discord.__version__)
 
 
@@ -15,11 +11,19 @@ bot = commands.Bot(command_prefix='-')
 bot.remove_command('help')
 players = {}
 
+
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Game(name='-help'),status='do_not_disturb')
+    print('This Bot is Ready!')
+
+
 @bot.event
 async def on_member_join(member):
     for channel in member.guild.channels:
         if str(channel) == "👑-welcome-👑":
             await channel.send(f"""hihi {member.mention},hope you enjoy in this server to fullest""")
+
 
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -72,10 +76,7 @@ async def utihelp(ctx):
 async def avatar_url(ctx , * ,member:discord.member):
     await ctx.send({avatar_url})
 
-@bot.event
-async def on_ready():
-    await bot.change_presence(activity=discord.Game(name='-help'))
-    print('This Bot is Ready!')
+
 
 
 @bot.command()
@@ -221,4 +222,27 @@ async def bully(ctx, members: commands.Greedy[discord.Member]):
         embed2.set_image(url=random.choice(ranimg1))
         await ctx.send(embed=embed2)
 
-bot.run('NjQ0NTkwOTQzODUyNDI5MzIz.XrvnTg.u-5U86gnrj4V6kiX-WZuJV7WdOg')
+
+@bot.command()
+async def all_members(ctx):
+    for guild in bot.guilds:
+        for member in guild.members:
+            await ctx.send(member)
+
+@bot.command()
+async def fetch_guilds(ctx,*, limit=1000, before=None, after=None):
+    guilds = await bot.fetch_guilds(limit=1000).flatten()
+    await ctx.send(guilds)
+
+class MemberRoles(commands.MemberConverter):
+    async def convert(self, ctx, argument):
+        member = await super().convert(ctx, argument)
+        return [role.name for role in member.roles[1:]] # Remove everyone role!
+
+@bot.command()
+async def roles(ctx, *, member: MemberRoles):
+    roleembed = discord.Embed(colour=discord.Colour.gold(),title='Roles of this user')
+    roleembed.add_field(name='Roles:',value='I see the following roles: ' + ', '.join(member))
+    await ctx.send(embed=roleembed)
+    
+bot.run('NjQ0NTkwOTQzODUyNDI5MzIz.XuH51A.xlLu7CYNxwxiy0lWHY34x0FY0VI')
