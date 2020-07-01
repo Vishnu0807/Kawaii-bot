@@ -124,7 +124,7 @@ async def info(ctx, *, member: discord.Member):
     fmend = discord.Embed(colour=discord.Colour.dark_magenta(),description='Info about {0}'.format(member))
     fmend.add_field(name='joined this Server on:',value='{0.joined_at}'.format(member))
     fmend.add_field(name='Joined Discord on:',value='{0.created_at}'.format(member))
-    fmend.set_thumbnail(name='Avatar url:',value='{0.avatar_url}'.format(member))
+    fmend.add_field(name='Avatar url:',value='{0.avatar_url}'.format(member))
     await ctx.send(ctx.author,embed = fmend)
 
 @info.error
