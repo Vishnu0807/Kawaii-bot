@@ -241,4 +241,4 @@ async def roles(ctx, *, member: MemberRoles):
     roleembed.add_field(name='Roles:',value='I see the following roles: ' + ', '.join(member))
     await ctx.send(embed=roleembed)
     
-bot.run('NjQ0NTkwOTQzODUyNDI5MzIz.XuH51A.xlLu7CYNxwxiy0lWHY34x0FY0VI')
+bot.run('token') #Enter your bot token
